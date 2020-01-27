@@ -1,0 +1,46 @@
+Last week I earned my first Kubernetes ( fondly called K8s ) certification named CKAD ( Certified Kubernetes Application Developer ). It was one of the most challenging exams I appeared in recent times. The main reason is, unlike other MCQ ( Multiple Choice Questions ) exams, CKAD is a hands on exam where you need to demonstrate your K8s skills on one or more live environments. It is also an open book kind of an exam where you are allowed to refer K8s documentation (only one tab ).  In this post, I will share some tips which helped me sail through the exam. Some of these tips/tricks are borrowed from people who have already cracked CKAD and were kind enough to blog their experiences. So time to return the favour !
+
+ I believe there are two parts to any exam preparation. First part is developing the expertise in the area by working on real projects while second part involves exam specific preparation. CKAD is no exception. As I have been working on K8s for more than two years, first part was taken care of. However, I had to do some dedicated exam specific preparation which. So let's get started !
+
+ Kubernetes Resources
+Here are some resources I referred for CKAD preparation
+
+Linux Foundation LFD259 : Kubernetes for Developers course is an official training offered by Linux foundation. It is very useful for understanding basic K8s concepts. Fortunately, I got a good Christmas combo deal for LDF259 course and CKAD Exam .
+Kubernetes Up and Running - by Kelsey Hightower, Brendan Burns and Joe Beda: What better resource than the book by creators themselves. This is another good resource for understanding concepts in depth.
+Udemy course by Mumshad Mannambeth : This is an excellent course in which you can practice commands on exam-like environment.
+https://github.com/dgkanatsios/CKAD-exercises: Must Try these exercises 2-3 times before you appear.
+Time management tips
+Biggest challenge in CKAD exam is time management. We have only 2 hours to complete 19 questions . On top of that, you need to write/edit YAML files is one of the default linux editors ( nano, vim etc ) which is not going to help in saving time. So here are some tips to save time.
+
+Master kubectl imperative commands: 
+While YAML is good for Infrastructure as a Code, it won't help you in saving time in exam unless you are a VIM/YAML ninja.
+
+SO PLEASE DON'T WRITE YAML FILES FROM SCRATCH !
+kubectl run and generators are the only saviours in this case. Check out my blog post about how to use generators to improve productivity. Remember that searching through K8s documentation will also be time consuming, practice imperative commands so that you refer documentation as less as possible. 
+
+Use bash aliases: 
+I used following aliases to save typing commands.
+
+export ns=default
+alias k='kubectl -n $ns' # This helps when namespace in question doesn't have a friendly name 
+alias kdr= 'kubectl -n $ns -o yaml --dry-run'.  # run commands in dry run mode and generate yaml.
+However, do remember that you sometimes need to do ssh to a node or switch to root user. In that case, make sure you set the aliases properly.
+
+VIM settings
+K8s imperative commands won't help in a few cases and you will have to write/edit YAMLs. E.g. For questions related to Persistent Volumes or Network Policies etc. I used following VIM settings to convert tabs to spaces and other syntax related help
+
+vim ~/.vimrc
+set nu
+set expandtab
+set shiftwidth=2
+set tabstop=2
+Bookmark K8s documentation links
+You are allowed to use K8s documentation. Make use of it and bookmark different sections in the document for quick access. 
+
+Things to remember during the exam
+Proctors are very strict about exam code of conduct. I was warned couple of times just for covering my mouth and reading out questions aloud.
+Before you attempt a new question, be sure to execute command to switch contexts. It is given at the start of the question
+Sometimes you need to ssh to another node or change to root user. Beware of where you are all the time on bash terminal.
+Note down questions and its percentage ( only in the note pad provided by exam environment ) if you want to skip the question for later. This strategy really helped me when there was a time crunch and I had to cover as much ground as possible 
+Conclusion
+CKAD exam demands a lot of hands on practice and skills. However, it is also one of the most rewarding experiences. And even if you don't crack it in first attempt, there is a free retake !  
